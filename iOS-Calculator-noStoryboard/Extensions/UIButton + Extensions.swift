@@ -8,7 +8,8 @@
 import UIKit
 
 extension UIButton {
-    static func makeCalcButton(title: String, titleColor: UIColor = .white, backgroundColor: UIColor) -> UIButton {
+    //FIXME: to make the func private
+    static private func makeCalcButton(title: String, titleColor: UIColor = .white, backgroundColor: UIColor) -> UIButton {
         let button = UIButton()
         button.setTitle(title, for: .normal)
         button.setTitleColor(titleColor, for: .normal)
