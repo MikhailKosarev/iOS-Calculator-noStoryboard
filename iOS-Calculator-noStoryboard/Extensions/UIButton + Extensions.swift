@@ -17,4 +17,17 @@ extension UIButton {
         button.titleLabel?.font = UIFontMetrics(forTextStyle: .largeTitle).scaledFont(for: adjustedFont)
         return button
     }
+    
+    static func makeCalcOrangeButton(title: String) -> UIButton {
+        return makeCalcButton(title: title, titleColor: .calcWhite, backgroundColor: .calcOrange)
+    }
+    
+    static func makeCalcLightGreyButton(title: String) -> UIButton {
+        return makeCalcButton(title: title, titleColor: .calcBlack, backgroundColor: .calcLightGrey)
+    }
+    
+    static func makeCalclDarkGreyButton(title: String) -> UIButton {
+        return makeCalcButton(title: title, titleColor: .calcWhite, backgroundColor: .calcDarkGrey)
+    }
+    
 }

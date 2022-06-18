@@ -8,8 +8,9 @@
 import UIKit
 
 extension UIColor {
-    static let calcLightGrey =  #colorLiteral(red: 0.8635340333, green: 0.8633314371, blue: 0.8570147753, alpha: 1)
-    static let calcEerieBlack =  #colorLiteral(red: 0.1098039216, green: 0.1098039216, blue: 0.1098039216, alpha: 1)
-    static let calcDarkLiver =  #colorLiteral(red: 0.3137254902, green: 0.3137254902, blue: 0.3137254902, alpha: 1)
-    static let calcVividGamboge =  #colorLiteral(red: 1, green: 0.5843137255, blue: 0, alpha: 1)
+    static let calcLightGrey = #colorLiteral(red: 0.6474125981, green: 0.6474125981, blue: 0.6474125981, alpha: 1)
+    static let calcDarkGrey =  #colorLiteral(red: 0.200694561, green: 0.200694561, blue: 0.200694561, alpha: 1)
+    static let calcWhite = #colorLiteral(red: 1, green: 0.9999999404, blue: 0.9999999404, alpha: 1)
+    static let calcBlack =  #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+    static let calcOrange =  #colorLiteral(red: 0.9905305505, green: 0.5850870013, blue: 0, alpha: 1)
 }
