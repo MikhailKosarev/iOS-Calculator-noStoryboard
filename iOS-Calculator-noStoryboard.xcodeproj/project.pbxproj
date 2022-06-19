@@ -98,11 +98,19 @@
 		74BF9A92285D02E30082D5E2 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				74BF9AA428605CEC0082D5E2 /* UIKit */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		74BF9AA428605CEC0082D5E2 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
 				74BF9A93285D03010082D5E2 /* UIColor + Extensions.swift */,
 				74BF9A95285D066F0082D5E2 /* UIButton + Extensions.swift */,
 				74BF9A97285D06890082D5E2 /* UIStackView + Extensions.swift */,
 			);
-			path = Extensions;
+			path = UIKit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
