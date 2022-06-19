@@ -8,6 +8,12 @@
 import UIKit
 
 class RootViewController: UIViewController {
+    private let displayOutputView: DisplayOutputView = {
+        let view = DisplayOutputView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     private let keyboardInputView: KeyboardInputView = {
         let view = KeyboardInputView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -18,7 +24,6 @@ class RootViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         setConstraints()
-        
     }
     
     
@@ -28,11 +33,16 @@ class RootViewController: UIViewController {
     }
     
     private func setupView() {
+        view.addSubview(displayOutputView)
         view.addSubview(keyboardInputView)
     }
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
+            displayOutputView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            displayOutputView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            displayOutputView.bottomAnchor.constraint(equalTo: keyboardInputView.topAnchor),
+            
             keyboardInputView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
             keyboardInputView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
             keyboardInputView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
