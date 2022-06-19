@@ -31,4 +31,8 @@ extension UIButton {
         return makeCalcButton(title: title, titleColor: .calcWhite, backgroundColor: .calcDarkGrey)
     }
     
+    static func makeCalcScientificDarkGreyButton(title: String) -> UIButton {
+        return makeCalcButton(title: title, titleColor: .calcWhite, backgroundColor: .calcScientificDarkGrey)
+    }
+    
 }
