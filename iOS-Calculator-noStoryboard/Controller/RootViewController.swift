@@ -22,6 +22,11 @@ class RootViewController: UIViewController {
     }
     
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        keyboardInputView.roundButtons()
+    }
+    
     private func setupView() {
         view.addSubview(keyboardInputView)
     }

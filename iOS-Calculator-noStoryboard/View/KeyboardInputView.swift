@@ -71,7 +71,7 @@ class KeyboardInputView: UIView {
                                                    distribution: .fillEqually)
     
     // Portrait buttons array
-    public lazy var portraitButtonArray = [acButton, plusMinusButton, percentButton, divideButton,
+    private lazy var portraitButtonArray = [acButton, plusMinusButton, percentButton, divideButton,
                                             sevenButton, eightButton, nineButton, multiplyButton,
                                             fourButton, fiveButton, sixButton, minusButton,
                                             oneButton, twoButton, threeButton, plusButton,
@@ -96,6 +96,17 @@ class KeyboardInputView: UIView {
             keyboardInputStackView.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
             keyboardInputStackView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
             keyboardInputStackView.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor),
+            
+//            oneButton.heightAnchor.constraint(equalToConstant: oneButton.frame.width)
         ])
+    }
+    
+    func roundButtons() {
+        //TODO: find an esy way to round buttons and to equal the height
+        // make the height of oneButton the buttons equal to the width. And all the buttons become square
+        NSLayoutConstraint(item: oneButton, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: oneButton, attribute: NSLayoutConstraint.Attribute.width, multiplier: 1.0, constant: 0).isActive = true
+        
+        portraitButtonArray.map { $0.layer.cornerRadius = oneButton.frame.width / 2 }
+//        portraitButtonArray.map { $0.layer.cornerRadius = $0.frame.height / 2 }
     }
 }
