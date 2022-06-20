@@ -151,14 +151,15 @@ class KeyboardInputView: UIView {
     
     // Scientific stacks array
     private lazy var scientificStackArray = [radAndSinhStackView, coshAndTanhStackView, piAndRandStackView]
+    
     //MARK: - Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
     }
     
-    required init(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
     }
     
     //MARK: - Constraints
@@ -208,7 +209,7 @@ class KeyboardInputView: UIView {
             //show scientific keyboard
             scientificStackArray.forEach { $0.isHidden = false }
             scientificButtonArray.forEach { $0.isHidden = false }
-
+            
         } else {
             // PORTRAIT MODE
             // activate equal height and width for buttons

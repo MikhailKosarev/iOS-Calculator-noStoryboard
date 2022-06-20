@@ -8,6 +8,8 @@
 import UIKit
 
 class DisplayOutputView: UIView {
+    private let sideMargin: CGFloat = 16.0
+    
     private let outputLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -34,8 +36,7 @@ class DisplayOutputView: UIView {
     }
     
     private func setConstraints() {
-        //FIXME: set margins with a variable
-        directionalLayoutMargins = NSDirectionalEdgeInsets(top: 0, leading: 16.0, bottom: 0, trailing: 16.0)
+        directionalLayoutMargins = NSDirectionalEdgeInsets(top: 0, leading: sideMargin, bottom: 0, trailing: sideMargin)
         
         NSLayoutConstraint.activate([
             outputLabel.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
