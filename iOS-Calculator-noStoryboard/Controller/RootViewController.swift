@@ -8,6 +8,10 @@
 import UIKit
 
 class RootViewController: UIViewController {
+    
+    //show or hide scientific keyboard when run the app
+    private var initialScientificKeyboardSetup = false
+    
     private let displayOutputView: DisplayOutputView = {
         let view = DisplayOutputView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -26,10 +30,24 @@ class RootViewController: UIViewController {
         setConstraints()
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        if !initialScientificKeyboardSetup {
+            keyboardInputView.configureScientificKeyboard(for: view.bounds.size)
+            initialScientificKeyboardSetup = true
+        }
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
 //        keyboardInputView.roundButtons()
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        if size != view.bounds.size {
+            keyboardInputView.configureScientificKeyboard(for: size)
+        }
     }
     
     private func setupView() {

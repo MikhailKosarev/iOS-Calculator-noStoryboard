@@ -9,7 +9,7 @@ import UIKit
 
 class KeyboardInputView: UIView {
     
-    // Divide row
+    //MARK: Divide row
     //landscape
     private let leftParenthesisButton = UIButton.makeCalcScientificDarkGreyButton(title: "(")
     private let rightParenthesisButton = UIButton.makeCalcScientificDarkGreyButton(title: ")")
@@ -17,6 +17,7 @@ class KeyboardInputView: UIView {
     private let memoryAddButton = UIButton.makeCalcScientificDarkGreyButton(title: "m+")
     private let memorySubtractButton = UIButton.makeCalcScientificDarkGreyButton(title: "m-")
     private let memoryRecallButton = UIButton.makeCalcScientificDarkGreyButton(title: "mr")
+    
     //portrait
     private let acButton = UIButton.makeCalcLightGreyButton(title: "AC")
     private let plusMinusButton = UIButton.makeCalcLightGreyButton(title: "\u{207A}\u{2044}\u{208B}")
@@ -29,7 +30,7 @@ class KeyboardInputView: UIView {
                                                       distribution: .fillEqually
     )
     
-    // Multiply row
+    //MARK: Multiply row
     //landscape
     private let twoNDButton = UIButton.makeCalcScientificDarkGreyButton(title: "2\u{207F}\u{1D48}")
     private let xSquareButton = UIButton.makeCalcScientificDarkGreyButton(title: "x\u{00B2}")
@@ -37,6 +38,7 @@ class KeyboardInputView: UIView {
     private let ythPowerOfXButton = UIButton.makeCalcScientificDarkGreyButton(title: "x\u{02B8}")
     private let eToThePowerOfXButton = UIButton.makeCalcScientificDarkGreyButton(title: "e\u{02E3}")
     private let tenToThePowerOfXButton = UIButton.makeCalcScientificDarkGreyButton(title: "10\u{02E3}")
+    
     //portrait
     private let sevenButton = UIButton.makeCalclDarkGreyButton(title: "7")
     private let eightButton = UIButton.makeCalclDarkGreyButton(title: "8")
@@ -49,7 +51,7 @@ class KeyboardInputView: UIView {
                                                         distribution: .fillEqually
     )
     
-    // Minus row
+    //MARK: Minus row
     // landscape
     private let inverseOfXButton = UIButton.makeCalcScientificDarkGreyButton(title: "\u{00B9}\u{2044}\u{2093}")
     private let squareRootOfXButton = UIButton.makeCalcScientificDarkGreyButton(title: "\u{221A}x")
@@ -57,6 +59,7 @@ class KeyboardInputView: UIView {
     private let ythRootOfXButton = UIButton.makeCalcScientificDarkGreyButton(title: "\u{02B8}\u{221A}x")
     private let naturalLogarithmButton = UIButton.makeCalcScientificDarkGreyButton(title: "ln")
     private let commonLogarithmButton = UIButton.makeCalcScientificDarkGreyButton(title: "log\u{2081}\u{2080}")
+    
     // portrait
     private let fourButton = UIButton.makeCalclDarkGreyButton(title: "4")
     private let fiveButton = UIButton.makeCalclDarkGreyButton(title: "5")
@@ -69,7 +72,7 @@ class KeyboardInputView: UIView {
                                                      distribution: .fillEqually
     )
     
-    // Plus row
+    //MARK: Plus row
     // landscape
     private let factorialOfXButton = UIButton.makeCalcScientificDarkGreyButton(title: "x!")
     private let sineButton = UIButton.makeCalcScientificDarkGreyButton(title: "sin")
@@ -77,6 +80,7 @@ class KeyboardInputView: UIView {
     private let tagButton = UIButton.makeCalcScientificDarkGreyButton(title: "tan")
     private let eulersNumberButton = UIButton.makeCalcScientificDarkGreyButton(title: "e")
     private let enterExponentButton = UIButton.makeCalcScientificDarkGreyButton(title: "EE")
+    
     // portrait
     private let oneButton = UIButton.makeCalclDarkGreyButton(title: "1")
     private let twoButton = UIButton.makeCalclDarkGreyButton(title: "2")
@@ -89,7 +93,7 @@ class KeyboardInputView: UIView {
                                                     distribution: .fillEqually
     )
     
-    // Equal row
+    //MARK: Equal row
     // landscape
     private let radianButton = UIButton.makeCalcScientificDarkGreyButton(title: "Rad")
     private let hyberbolicSineButton = UIButton.makeCalcScientificDarkGreyButton(title: "sinh")
@@ -97,23 +101,30 @@ class KeyboardInputView: UIView {
     private let hyperbolicTanButton = UIButton.makeCalcScientificDarkGreyButton(title: "tanh")
     private let piButton = UIButton.makeCalcScientificDarkGreyButton(title: "\u{03C0}")
     private let randomNumberButton = UIButton.makeCalcScientificDarkGreyButton(title: "Rand")
+    
     // portrait
     private let zeroButton = UIButton.makeCalclDarkGreyButton(title: "0")
-    private let pointButton = UIButton.makeCalclDarkGreyButton(title: ",")
+    private let commaButton = UIButton.makeCalclDarkGreyButton(title: ",")
     private let equalButton = UIButton.makeCalcOrangeButton(title: "\u{003D}")
     
-    private lazy var equalRowFunctionsStackView = UIStackView(arrangedSubviews: [radianButton, hyberbolicSineButton, hyperbolicCosineButton, hyperbolicTanButton, piButton, randomNumberButton],
-                                                              axis: .horizontal,
-                                                              distribution: .fillEqually)
-    //without "zero button"
-    private lazy var equalAndPointStackView = UIStackView(arrangedSubviews: [pointButton, equalButton],
+    //stacks to fill the stackView equally with zeroButton
+    private lazy var radAndSinhStackView = UIStackView(arrangedSubviews: [radianButton, hyberbolicSineButton],
+                                                       axis: .horizontal,
+                                                       distribution: .fillEqually)
+    private lazy var coshAndTanhStackView = UIStackView(arrangedSubviews: [hyperbolicCosineButton, hyperbolicTanButton],
+                                                        axis: .horizontal,
+                                                        distribution: .fillEqually)
+    private lazy var piAndRandStackView = UIStackView(arrangedSubviews: [piButton, randomNumberButton],
+                                                      axis: .horizontal,
+                                                      distribution: .fillEqually)
+    private lazy var equalAndPointStackView = UIStackView(arrangedSubviews: [commaButton, equalButton],
                                                           axis: .horizontal,
                                                           distribution: .fillEqually
     )
     
-    private lazy var equalRowStackView = UIStackView(arrangedSubviews: [equalRowFunctionsStackView, zeroButton, equalAndPointStackView],
+    private lazy var equalRowStackView = UIStackView(arrangedSubviews: [radAndSinhStackView, coshAndTanhStackView, piAndRandStackView, zeroButton, equalAndPointStackView],
                                                      axis: .horizontal,
-                                                     distribution: .fillProportionally
+                                                     distribution: .fillEqually
     )
     
     // Buttons stackView
@@ -130,7 +141,14 @@ class KeyboardInputView: UIView {
                                             sevenButton, eightButton, nineButton, multiplyButton,
                                             fourButton, fiveButton, sixButton, minusButton,
                                             oneButton, twoButton, threeButton, plusButton,
-                                            zeroButton, pointButton, equalButton]
+                                            zeroButton, commaButton, equalButton]
+    // Scientific buttons array
+    private lazy var scientificButtonArray = [leftParenthesisButton, rightParenthesisButton, memoryClearButton, memoryAddButton, memorySubtractButton, memoryRecallButton,
+                                              twoNDButton, xSquareButton, xCubeButton, ythPowerOfXButton, eToThePowerOfXButton, tenToThePowerOfXButton,
+                                              inverseOfXButton, squareRootOfXButton, cubeRootOfXButton, ythRootOfXButton, naturalLogarithmButton, commonLogarithmButton,
+                                              factorialOfXButton, sineButton, cosineButton, tagButton, eulersNumberButton, enterExponentButton,
+                                              radianButton, hyberbolicSineButton, hyperbolicCosineButton, hyperbolicTanButton, piButton, randomNumberButton]
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -158,10 +176,35 @@ class KeyboardInputView: UIView {
     
     func roundButtons() {
         //TODO: find an esy way to round buttons and to equal the height
+        
         // make the height of oneButton the buttons equal to the width. And all the buttons become square
         NSLayoutConstraint(item: oneButton, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: oneButton, attribute: NSLayoutConstraint.Attribute.width, multiplier: 1.0, constant: 0).isActive = true
         
-        portraitButtonArray.map { $0.layer.cornerRadius = oneButton.frame.width / 2 }
+        let cornerRaduius = oneButton.frame.width / 2
+        
+        for view in keyboardInputStackView.arrangedSubviews {
+            if let button = view as? UIButton {
+                button.layer.cornerRadius = cornerRaduius
+            }
+        }
+        //        portraitButtonArray.map { $0.layer.cornerRadius = oneButton.frame.width / 2 }
         //        portraitButtonArray.map { $0.layer.cornerRadius = $0.frame.height / 2 }
+    }
+    
+    //show or hide scientific keyboard
+    func configureScientificKeyboard(for size: CGSize) {
+        if size.width > size.height {
+            // landscape
+            radAndSinhStackView.isHidden = false
+            coshAndTanhStackView.isHidden = false
+            piAndRandStackView.isHidden = false
+            scientificButtonArray.map { $0.isHidden = false }
+        } else {
+            // portrait
+            radAndSinhStackView.isHidden = true
+            coshAndTanhStackView.isHidden = true
+            piAndRandStackView.isHidden = true
+            scientificButtonArray.map { $0.isHidden = true }
+        }
     }
 }
