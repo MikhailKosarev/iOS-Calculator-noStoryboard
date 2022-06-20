@@ -32,16 +32,18 @@ class RootViewController: UIViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
+        //first setup
         if !initialScientificKeyboardSetup {
             keyboardInputView.configureScientificKeyboard(for: view.bounds.size)
             initialScientificKeyboardSetup = true
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
+    //TODO: think about necessity of this function
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(true)
 //        keyboardInputView.roundButtons()
-    }
+//    }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
@@ -60,13 +62,11 @@ class RootViewController: UIViewController {
             displayOutputView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
             displayOutputView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
             displayOutputView.bottomAnchor.constraint(equalTo: keyboardInputView.topAnchor),
+            displayOutputView.topAnchor.constraint(greaterThanOrEqualTo: view.layoutMarginsGuide.topAnchor),
             
             keyboardInputView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
             keyboardInputView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
             keyboardInputView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
         ])
     }
-
-
 }
-

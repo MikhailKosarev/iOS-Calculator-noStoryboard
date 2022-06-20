@@ -9,7 +9,7 @@ import UIKit
 
 class KeyboardInputView: UIView {
     
-    //MARK: Divide row
+    //MARK: - Divide row
     //landscape
     private let leftParenthesisButton = UIButton.makeCalcScientificDarkGreyButton(title: "(")
     private let rightParenthesisButton = UIButton.makeCalcScientificDarkGreyButton(title: ")")
@@ -30,7 +30,7 @@ class KeyboardInputView: UIView {
                                                       distribution: .fillEqually
     )
     
-    //MARK: Multiply row
+    //MARK: - Multiply row
     //landscape
     private let twoNDButton = UIButton.makeCalcScientificDarkGreyButton(title: "2\u{207F}\u{1D48}")
     private let xSquareButton = UIButton.makeCalcScientificDarkGreyButton(title: "x\u{00B2}")
@@ -51,7 +51,7 @@ class KeyboardInputView: UIView {
                                                         distribution: .fillEqually
     )
     
-    //MARK: Minus row
+    //MARK: - Minus row
     // landscape
     private let inverseOfXButton = UIButton.makeCalcScientificDarkGreyButton(title: "\u{00B9}\u{2044}\u{2093}")
     private let squareRootOfXButton = UIButton.makeCalcScientificDarkGreyButton(title: "\u{221A}x")
@@ -72,7 +72,7 @@ class KeyboardInputView: UIView {
                                                      distribution: .fillEqually
     )
     
-    //MARK: Plus row
+    //MARK: - Plus row
     // landscape
     private let factorialOfXButton = UIButton.makeCalcScientificDarkGreyButton(title: "x!")
     private let sineButton = UIButton.makeCalcScientificDarkGreyButton(title: "sin")
@@ -93,7 +93,7 @@ class KeyboardInputView: UIView {
                                                     distribution: .fillEqually
     )
     
-    //MARK: Equal row
+    //MARK: - Equal row
     // landscape
     private let radianButton = UIButton.makeCalcScientificDarkGreyButton(title: "Rad")
     private let hyberbolicSineButton = UIButton.makeCalcScientificDarkGreyButton(title: "sinh")
@@ -149,62 +149,74 @@ class KeyboardInputView: UIView {
                                               factorialOfXButton, sineButton, cosineButton, tagButton, eulersNumberButton, enterExponentButton,
                                               radianButton, hyberbolicSineButton, hyperbolicCosineButton, hyperbolicTanButton, piButton, randomNumberButton]
     
+    // Scientific stacks array
+    private lazy var scientificStackArray = [radAndSinhStackView, coshAndTanhStackView, piAndRandStackView]
+    //MARK: - Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
-        setConstraints()
     }
     
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupView() {
-        addSubview(keyboardInputStackView)
-    }
-    
-    func setConstraints() {
-        NSLayoutConstraint.activate([
+    //MARK: - Constraints
+    private lazy var commonConstraints: [NSLayoutConstraint] = {
+        return  [
             keyboardInputStackView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
             keyboardInputStackView.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
             keyboardInputStackView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
             keyboardInputStackView.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor),
-            
-            //            oneButton.heightAnchor.constraint(equalToConstant: oneButton.frame.width)
-        ])
+        ]
+    }()
+    
+    private lazy var portraitConstraints: [NSLayoutConstraint] = {
+        return [ oneButton.heightAnchor.constraint(equalTo: oneButton.widthAnchor, multiplier: 1.0) ]
+    }()
+    
+    
+    //MARK: - Functions
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layoutIfNeeded()
+        roundButtons()
+    }
+    
+    private func setupView() {
+        addSubview(keyboardInputStackView)
+        NSLayoutConstraint.activate(commonConstraints)
     }
     
     func roundButtons() {
-        //TODO: find an esy way to round buttons and to equal the height
+        //TODO: think about an easier way to round buttons and to equal the height
         
         // make the height of oneButton the buttons equal to the width. And all the buttons become square
-        NSLayoutConstraint(item: oneButton, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: oneButton, attribute: NSLayoutConstraint.Attribute.width, multiplier: 1.0, constant: 0).isActive = true
-        
-        let cornerRaduius = oneButton.frame.width / 2
-        
-        for view in keyboardInputStackView.arrangedSubviews {
-            if let button = view as? UIButton {
-                button.layer.cornerRadius = cornerRaduius
-            }
-        }
-        //        portraitButtonArray.map { $0.layer.cornerRadius = oneButton.frame.width / 2 }
-        //        portraitButtonArray.map { $0.layer.cornerRadius = $0.frame.height / 2 }
+        let cornerRaduius = oneButton.frame.height / 2
+        portraitButtonArray.forEach { $0.layer.cornerRadius = cornerRaduius }
+        scientificButtonArray.forEach { $0.layer.cornerRadius = cornerRaduius }
     }
     
     //show or hide scientific keyboard
     func configureScientificKeyboard(for size: CGSize) {
         if size.width > size.height {
-            // landscape
-            radAndSinhStackView.isHidden = false
-            coshAndTanhStackView.isHidden = false
-            piAndRandStackView.isHidden = false
-            scientificButtonArray.map { $0.isHidden = false }
+            // LANDSCAPE MODE
+            // deactivate equal height and width for buttons
+            NSLayoutConstraint.deactivate(portraitConstraints)
+            
+            //show scientific keyboard
+            scientificStackArray.forEach { $0.isHidden = false }
+            scientificButtonArray.forEach { $0.isHidden = false }
+
         } else {
-            // portrait
-            radAndSinhStackView.isHidden = true
-            coshAndTanhStackView.isHidden = true
-            piAndRandStackView.isHidden = true
-            scientificButtonArray.map { $0.isHidden = true }
+            // PORTRAIT MODE
+            // activate equal height and width for buttons
+            NSLayoutConstraint.activate(portraitConstraints)
+            
+            //hide scientific keyboard
+            scientificStackArray.forEach { $0.isHidden = true }
+            scientificButtonArray.forEach { $0.isHidden = true }
         }
     }
 }
