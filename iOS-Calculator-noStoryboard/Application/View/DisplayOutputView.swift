@@ -15,7 +15,6 @@ class DisplayOutputView: UIView {
         label.backgroundColor = .calcBlack
         label.textAlignment = .right
         label.text = "0"
-//        label.font = .systemFont(ofSize: 100)
         label.font = .systemFont(ofSize: 100, weight: .light)
         return label
     }()

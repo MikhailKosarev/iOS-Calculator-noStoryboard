@@ -29,7 +29,7 @@ class RootViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        keyboardInputView.roundButtons()
+//        keyboardInputView.roundButtons()
     }
     
     private func setupView() {
