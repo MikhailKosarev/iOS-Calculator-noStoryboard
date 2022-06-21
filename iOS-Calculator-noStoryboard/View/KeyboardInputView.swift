@@ -55,7 +55,7 @@ class KeyboardInputView: UIView {
     // landscape
     private let inverseOfXButton = UIButton.makeCalcScientificDarkGreyButton(title: "\u{00B9}\u{2044}\u{2093}")
     private let squareRootOfXButton = UIButton.makeCalcScientificDarkGreyButton(title: "\u{221A}x")
-    private let cubeRootOfXButton = UIButton.makeCalcScientificDarkGreyButton(title: "\u{221B}\u{2044}x")
+    private let cubeRootOfXButton = UIButton.makeCalcScientificDarkGreyButton(title: "\u{221B}x")
     private let ythRootOfXButton = UIButton.makeCalcScientificDarkGreyButton(title: "\u{02B8}\u{221A}x")
     private let naturalLogarithmButton = UIButton.makeCalcScientificDarkGreyButton(title: "ln")
     private let commonLogarithmButton = UIButton.makeCalcScientificDarkGreyButton(title: "log\u{2081}\u{2080}")
