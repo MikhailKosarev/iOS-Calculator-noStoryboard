@@ -12,10 +12,13 @@ extension UIButton {
         let button = UIButton()
         button.setTitle(title, for: .normal)
         button.setTitleColor(titleColor, for: .normal)
+//        button.setTitleColor(.green, for: .highlighted)
         button.backgroundColor = backgroundColor
         button.titleLabel?.font = .interMedium16()
         return button
     }
+    
+//    button.addTarget(self, action: #selector(cancelAction(_:)), for: .touchUpInside)
     
     static func makeCalcOrangeButton(title: String) -> UIButton {
         return makeCalcButton(title: title, titleColor: .calcWhite, backgroundColor: .calcOrange)

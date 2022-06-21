@@ -201,6 +201,7 @@ class KeyboardInputView: UIView {
     private func setupView() {
         addSubview(keyboardInputStackView)
         NSLayoutConstraint.activate(commonConstraints)
+        setButtonsTarget()
     }
     
     func roundButtons() {
@@ -270,5 +271,55 @@ class KeyboardInputView: UIView {
                 }
             }
         }
+    }
+    
+    private func setButtonsTarget() {
+        orangeButtonArray.forEach{ $0.addTarget(self, action: #selector(orangeButtonTapped), for: .touchUpInside) }
+        lightGreyButtonArray.forEach { $0.addTarget(self, action: #selector(lightGreyButtonTapped), for: .touchUpInside) }
+        darkGreyButtonArray.forEach { $0.addTarget(self, action: #selector(darkGreyButtonTapped), for: .touchUpInside)}
+        scientificButtonArray.forEach { $0.addTarget(self, action: #selector(scientificDarkGreyButtonTapped), for: .touchUpInside)}
+    }
+}
+
+//MARK: - Buttons tapped functions
+
+extension KeyboardInputView {
+    @objc func orangeButtonTapped(_ sender: UIButton) {
+        //TODO: What is the better animation?
+//        UIView.transition(with: zeroButton, duration: 0.5, options: .curveEaseInOut, animations: {
+//            sender.backgroundColor = .calcOrangeButtonTapped
+//        })
+//        UIView.transition(with: zeroButton, duration: 0.5, options: .curveEaseInOut, animations: {
+//            sender.backgroundColor = .calcOrange
+//        })
+        UIView.animate(withDuration: 0.25, delay: 0.0, options:[.autoreverse, .allowUserInteraction], animations: {
+            sender.backgroundColor = .calcOrangeButtonTapped
+         }, completion: { (finished) in
+             sender.backgroundColor = .calcOrange
+         })
+    }
+    
+    @objc func lightGreyButtonTapped(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.25, delay: 0.0, options:[.autoreverse, .allowUserInteraction], animations: {
+            sender.backgroundColor = .calcLightGreyButtonTapped
+         }, completion: { (finished) in
+             sender.backgroundColor = .calcLightGrey
+         })
+    }
+    
+    @objc func darkGreyButtonTapped(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.25, delay: 0.0, options:[.autoreverse, .allowUserInteraction], animations: {
+            sender.backgroundColor = .calcDarkGreyButtonTapped
+         }, completion: { (finished) in
+             sender.backgroundColor = .calcDarkGrey
+         })
+    }
+    
+    @objc func scientificDarkGreyButtonTapped(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.25, delay: 0.0, options:[.autoreverse, .allowUserInteraction], animations: {
+            sender.backgroundColor = .calcScientificDarkGreyButtonTapped
+         }, completion: { (finished) in
+             sender.backgroundColor = .calcScientificDarkGrey
+         })
     }
 }
