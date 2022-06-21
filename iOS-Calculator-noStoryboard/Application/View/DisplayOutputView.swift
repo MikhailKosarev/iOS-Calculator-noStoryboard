@@ -17,7 +17,7 @@ class DisplayOutputView: UIView {
         label.backgroundColor = .calcBlack
         label.textAlignment = .right
         label.text = "0"
-        label.font = .systemFont(ofSize: 100, weight: .light)
+        label.font = .interLight90()
         return label
     }()
     
@@ -44,5 +44,15 @@ class DisplayOutputView: UIView {
             outputLabel.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
             outputLabel.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor),
         ])
+    }
+    
+    func configureDisplayOutput(for size: CGSize) {
+        if size.width > size.height {
+            // LANDSCAPE MODE
+            outputLabel.font = .interLight50()
+        } else {
+            // PORTRAIT MODE
+            outputLabel.font = .interLight90()
+        }
     }
 }

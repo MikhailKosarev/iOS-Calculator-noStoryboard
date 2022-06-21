@@ -17,6 +17,10 @@
 		74BF9A98285D06890082D5E2 /* UIStackView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BF9A97285D06890082D5E2 /* UIStackView + Extensions.swift */; };
 		74BF9AA1285DE23B0082D5E2 /* KeyboardInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BF9AA0285DE23B0082D5E2 /* KeyboardInputView.swift */; };
 		74BF9AA3285F8F660082D5E2 /* DisplayOutputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BF9AA2285F8F660082D5E2 /* DisplayOutputView.swift */; };
+		74BF9AC92861C2400082D5E2 /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 74BF9AC62861C2400082D5E2 /* Inter-Regular.ttf */; };
+		74BF9ACA2861C2400082D5E2 /* Inter-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 74BF9AC72861C2400082D5E2 /* Inter-Light.ttf */; };
+		74BF9ACB2861C2400082D5E2 /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 74BF9AC82861C2400082D5E2 /* Inter-Medium.ttf */; };
+		74BF9AD02861DC2C0082D5E2 /* UIFont + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BF9ACF2861DC2C0082D5E2 /* UIFont + Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +36,10 @@
 		74BF9A97285D06890082D5E2 /* UIStackView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView + Extensions.swift"; sourceTree = "<group>"; };
 		74BF9AA0285DE23B0082D5E2 /* KeyboardInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = KeyboardInputView.swift; path = "iOS-Calculator-noStoryboard/View/KeyboardInputView.swift"; sourceTree = SOURCE_ROOT; };
 		74BF9AA2285F8F660082D5E2 /* DisplayOutputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayOutputView.swift; sourceTree = "<group>"; };
+		74BF9AC62861C2400082D5E2 /* Inter-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.ttf"; sourceTree = "<group>"; };
+		74BF9AC72861C2400082D5E2 /* Inter-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Light.ttf"; sourceTree = "<group>"; };
+		74BF9AC82861C2400082D5E2 /* Inter-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Medium.ttf"; sourceTree = "<group>"; };
+		74BF9ACF2861DC2C0082D5E2 /* UIFont + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +101,7 @@
 		74BF9A91285D011A0082D5E2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				74BF9AC52861C20C0082D5E2 /* Fonts */,
 				74328484285CFAA90005B363 /* Assets.xcassets */,
 				74328486285CFAA90005B363 /* LaunchScreen.storyboard */,
 				74328489285CFAA90005B363 /* Info.plist */,
@@ -108,16 +117,6 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		74BF9AA428605CEC0082D5E2 /* UIKit */ = {
-			isa = PBXGroup;
-			children = (
-				74BF9A93285D03010082D5E2 /* UIColor + Extensions.swift */,
-				74BF9A95285D066F0082D5E2 /* UIButton + Extensions.swift */,
-				74BF9A97285D06890082D5E2 /* UIStackView + Extensions.swift */,
-			);
-			path = UIKit;
-			sourceTree = "<group>";
-		};
 		74BF9A9F285DE2140082D5E2 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -126,6 +125,27 @@
 			);
 			name = View;
 			path = Application/View;
+			sourceTree = "<group>";
+		};
+		74BF9AA428605CEC0082D5E2 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				74BF9A93285D03010082D5E2 /* UIColor + Extensions.swift */,
+				74BF9A95285D066F0082D5E2 /* UIButton + Extensions.swift */,
+				74BF9A97285D06890082D5E2 /* UIStackView + Extensions.swift */,
+				74BF9ACF2861DC2C0082D5E2 /* UIFont + Extensions.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		74BF9AC52861C20C0082D5E2 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				74BF9AC72861C2400082D5E2 /* Inter-Light.ttf */,
+				74BF9AC62861C2400082D5E2 /* Inter-Regular.ttf */,
+				74BF9AC82861C2400082D5E2 /* Inter-Medium.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,6 +207,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				74328488285CFAA90005B363 /* LaunchScreen.storyboard in Resources */,
+				74BF9AC92861C2400082D5E2 /* Inter-Regular.ttf in Resources */,
+				74BF9ACA2861C2400082D5E2 /* Inter-Light.ttf in Resources */,
+				74BF9ACB2861C2400082D5E2 /* Inter-Medium.ttf in Resources */,
 				74328485285CFAA90005B363 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -200,6 +223,7 @@
 			files = (
 				74328480285CFAA80005B363 /* RootViewController.swift in Sources */,
 				74BF9A98285D06890082D5E2 /* UIStackView + Extensions.swift in Sources */,
+				74BF9AD02861DC2C0082D5E2 /* UIFont + Extensions.swift in Sources */,
 				74BF9A94285D03010082D5E2 /* UIColor + Extensions.swift in Sources */,
 				7432847C285CFAA80005B363 /* AppDelegate.swift in Sources */,
 				74BF9AA3285F8F660082D5E2 /* DisplayOutputView.swift in Sources */,
@@ -360,7 +384,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -387,7 +411,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

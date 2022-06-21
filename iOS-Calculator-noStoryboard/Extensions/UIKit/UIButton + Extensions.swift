@@ -13,8 +13,7 @@ extension UIButton {
         button.setTitle(title, for: .normal)
         button.setTitleColor(titleColor, for: .normal)
         button.backgroundColor = backgroundColor
-        let adjustedFont = UIFont.systemFont(ofSize: 20.0, weight: .regular)
-        button.titleLabel?.font = UIFontMetrics(forTextStyle: .largeTitle).scaledFont(for: adjustedFont)
+        button.titleLabel?.font = .interMedium16()
         return button
     }
     

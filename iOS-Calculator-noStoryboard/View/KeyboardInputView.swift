@@ -9,6 +9,11 @@ import UIKit
 
 class KeyboardInputView: UIView {
     
+    public enum Metrics {
+        static let portraitSpacing: CGFloat = 16.0
+        static let landscapeSpacing: CGFloat = 8.0
+    }
+    
     //MARK: - Divide row
     //landscape
     private let leftParenthesisButton = UIButton.makeCalcScientificDarkGreyButton(title: "(")
@@ -20,7 +25,7 @@ class KeyboardInputView: UIView {
     
     //portrait
     private let acButton = UIButton.makeCalcLightGreyButton(title: "AC")
-    private let plusMinusButton = UIButton.makeCalcLightGreyButton(title: "\u{207A}\u{2044}\u{208B}")
+    private let plusMinusButton = UIButton.makeCalcLightGreyButton(title: "\u{207A}\u{2044}\u{002D}")
     private let percentButton = UIButton.makeCalcLightGreyButton(title: "%")
     private let divideButton = UIButton.makeCalcOrangeButton(title: "\u{00F7}")
     private lazy var divideRowStackView = UIStackView(arrangedSubviews:
@@ -126,7 +131,7 @@ class KeyboardInputView: UIView {
                                                      axis: .horizontal,
                                                      distribution: .fillEqually
     )
-    
+    //MARK: - keyboardInputStackView
     // Buttons stackView
     private lazy var keyboardInputStackView = UIStackView(arrangedSubviews: [divideRowStackView,
                                                                              multiplyRowStackView,
@@ -136,12 +141,20 @@ class KeyboardInputView: UIView {
                                                           axis: .vertical,
                                                           distribution: .fillEqually)
     
+    
+    //MARK: - Button arrays
+    // Orange buttons array
+    private lazy var orangeButtonArray = [divideButton, multiplyButton, minusButton, plusButton, equalButton]
+    
+    // Light grey buttons aray
+    private lazy var lightGreyButtonArray = [acButton, plusMinusButton, percentButton]
+    
+    // Dark grey buttons array
+    private lazy var darkGreyButtonArray = [sevenButton, eightButton, nineButton, fourButton, fiveButton, sixButton, oneButton, twoButton, threeButton, zeroButton, commaButton,]
+    
     // Portrait buttons array
-    private lazy var portraitButtonArray = [acButton, plusMinusButton, percentButton, divideButton,
-                                            sevenButton, eightButton, nineButton, multiplyButton,
-                                            fourButton, fiveButton, sixButton, minusButton,
-                                            oneButton, twoButton, threeButton, plusButton,
-                                            zeroButton, commaButton, equalButton]
+    private lazy var portraitButtonArray = orangeButtonArray + lightGreyButtonArray + darkGreyButtonArray
+    
     // Scientific buttons array
     private lazy var scientificButtonArray = [leftParenthesisButton, rightParenthesisButton, memoryClearButton, memoryAddButton, memorySubtractButton, memoryRecallButton,
                                               twoNDButton, xSquareButton, xCubeButton, ythPowerOfXButton, eToThePowerOfXButton, tenToThePowerOfXButton,
@@ -177,7 +190,7 @@ class KeyboardInputView: UIView {
     }()
     
     
-    //MARK: - Functions
+    //MARK: - Methods
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -195,13 +208,42 @@ class KeyboardInputView: UIView {
         
         // make the height of oneButton the buttons equal to the width. And all the buttons become square
         let cornerRaduius = oneButton.frame.height / 2
-        portraitButtonArray.forEach { $0.layer.cornerRadius = cornerRaduius }
-        scientificButtonArray.forEach { $0.layer.cornerRadius = cornerRaduius }
+        portraitButtonArray.forEach {
+            $0.layer.cornerRadius = cornerRaduius
+        }
+        scientificButtonArray.forEach { $0.layer.cornerRadius = cornerRaduius
+        }
     }
     
     //show or hide scientific keyboard
     func configureScientificKeyboard(for size: CGSize) {
-        if size.width > size.height {
+        if size.width < size.height {
+            // PORTRAIT MODE
+            // activate equal height and width for buttons
+            NSLayoutConstraint.activate(portraitConstraints)
+            
+            //hide scientific keyboard
+            scientificStackArray.forEach { $0.isHidden = true }
+            scientificButtonArray.forEach { $0.isHidden = true }
+            
+            // increase font size of portrait keyboard
+            orangeButtonArray.forEach { $0.titleLabel?.font = .interMedium44() }
+            lightGreyButtonArray.forEach { $0.titleLabel?.font = .interMedium34() }
+            darkGreyButtonArray.forEach { $0.titleLabel?.font = .interMedium38() }
+            
+            // set bigger stackView spacing
+            keyboardInputStackView.spacing = Metrics.portraitSpacing
+            keyboardInputStackView.arrangedSubviews.forEach {
+                if let stackView = $0 as? UIStackView {
+                    stackView.spacing = Metrics.portraitSpacing
+                }
+            }
+            equalRowStackView.arrangedSubviews.forEach {
+                if let stackView = $0 as? UIStackView {
+                    stackView.spacing = Metrics.portraitSpacing
+                }
+            }
+        } else {
             // LANDSCAPE MODE
             // deactivate equal height and width for buttons
             NSLayoutConstraint.deactivate(portraitConstraints)
@@ -210,14 +252,23 @@ class KeyboardInputView: UIView {
             scientificStackArray.forEach { $0.isHidden = false }
             scientificButtonArray.forEach { $0.isHidden = false }
             
-        } else {
-            // PORTRAIT MODE
-            // activate equal height and width for buttons
-            NSLayoutConstraint.activate(portraitConstraints)
+            // decrease font size of portrait keyboard
+            orangeButtonArray.forEach { $0.titleLabel?.font = .interMedium30() }
+            lightGreyButtonArray.forEach { $0.titleLabel?.font = .interMedium24() }
+            darkGreyButtonArray.forEach { $0.titleLabel?.font = .interMedium24() }
             
-            //hide scientific keyboard
-            scientificStackArray.forEach { $0.isHidden = true }
-            scientificButtonArray.forEach { $0.isHidden = true }
+            // set smaller stackView spacing
+            keyboardInputStackView.spacing = Metrics.landscapeSpacing
+            keyboardInputStackView.arrangedSubviews.forEach {
+                if let stackView = $0 as? UIStackView {
+                    stackView.spacing = Metrics.landscapeSpacing
+                }
+            }
+            equalRowStackView.arrangedSubviews.forEach {
+                if let stackView = $0 as? UIStackView {
+                    stackView.spacing = Metrics.landscapeSpacing
+                }
+            }
         }
     }
 }

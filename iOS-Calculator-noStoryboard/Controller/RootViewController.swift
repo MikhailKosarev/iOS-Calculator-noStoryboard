@@ -24,6 +24,7 @@ class RootViewController: UIViewController {
         return view
     }()
 
+    //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -35,6 +36,7 @@ class RootViewController: UIViewController {
         //first setup
         if !initialScientificKeyboardSetup {
             keyboardInputView.configureScientificKeyboard(for: view.bounds.size)
+            displayOutputView.configureDisplayOutput(for: view.bounds.size)
             initialScientificKeyboardSetup = true
         }
     }
@@ -49,24 +51,28 @@ class RootViewController: UIViewController {
         super.viewWillTransition(to: size, with: coordinator)
         if size != view.bounds.size {
             keyboardInputView.configureScientificKeyboard(for: size)
+            displayOutputView.configureDisplayOutput(for: size)
         }
     }
     
+    //MARK: - Setup
     private func setupView() {
         view.addSubview(displayOutputView)
         view.addSubview(keyboardInputView)
     }
     
+    
+    
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            displayOutputView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-            displayOutputView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            displayOutputView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            displayOutputView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             displayOutputView.bottomAnchor.constraint(equalTo: keyboardInputView.topAnchor),
-            displayOutputView.topAnchor.constraint(greaterThanOrEqualTo: view.layoutMarginsGuide.topAnchor),
-            
-            keyboardInputView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-            keyboardInputView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
-            keyboardInputView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            displayOutputView.topAnchor.constraint(greaterThanOrEqualTo: view.safeAreaLayoutGuide.topAnchor),
+        
+            keyboardInputView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            keyboardInputView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            keyboardInputView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
         ])
     }
 }
